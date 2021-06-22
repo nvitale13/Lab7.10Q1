@@ -3,13 +3,12 @@
 
 using std::cout;
 using std::cin;
+using std::abs;
 using std::endl;
 
 int main() {
 
-float Numerator;
-float Denominator;
-float Fraction;
+int Numerator, Denominator = 0;
 
 cout << "Enter Numerator: ";
 cin >> Numerator;
@@ -17,12 +16,37 @@ cin >> Numerator;
 cout << "Enter Denominator: ";
 cin >> Denominator;
 
-Fraction = Numerator / Denominator; 
+bool is_neg = false;
+if ((Numerator < 0 && Denominator >= 0) || (Numerator >=0 && Denominator < 0)){
+  is_neg = true;
+}
 
-cout << "Mixed Fraction: " << Fraction << endl;
+Numerator = abs(Numerator);
+Denominator = abs(Denominator);
+
+if (Numerator > Denominator) {
+  int whole = Numerator / Denominator;
+  int remainder = Numerator % Denominator;
+  
+  if (is_neg) {
+    cout << "-";
+    } 
+    cout << whole << " ";
+    if (remainder > 0)
+     cout << remainder << "/" << Denominator;
+
+cout << "\n";
+} else {
+  if (is_neg) {
+  cout << "-"; 
+}
+
+cout << Numerator << "/" << Denominator << "\n" << endl;
 
 
 return 0;
+
+}
 
 }
 
